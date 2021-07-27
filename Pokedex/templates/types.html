@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Types of Pokemons </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap');
+
+        :root {
+            --font1: 'Anton', sans-serif;
+            --font2: 'Playfair Display', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+
+            text-align: center;
+            /* background-color: darkgoldenrod; */
+            color:cyan;
+            margin: 13px;
+            font-family: var(--font1);
+            padding: 10px;
+            letter-spacing: 4px;
+        }
+
+        h2 ol {
+            margin: 2.5vw;
+            color:cyan;
+        }
+
+        h2 ol li a {
+            text-align: center;
+            text-decoration: none;
+            color:cyan;
+            font-family: var(--font2);
+        }
+
+        div.poke-image {
+            background-image: url('https://wallpaperaccess.com/full/21005.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center center;
+            height: 100%;
+            width: 100%;
+        }
+
+        div.poke-text {
+            backdrop-filter: blur(3px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="poke-image">
+        <div class="poke-text">
+            <h1>There are 20 types of pokemons namely:</h1>
+            <h2>
+                <ol>
+                    {% for t in types %}
+                    <li><a href="/types/{{ t }}">{{ t|capfirst }}</a></li>
+                    <br>
+                    {% endfor %}
+                </ol>
+            </h2>
+        </div>
+    </div>
+</body>
+
+</html>

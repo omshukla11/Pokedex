@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title> Types of Pokemons </title>
+<style>
+h1 {
+    text-align: center;
+    background-color:cyan;
+    color: black;
+}
+</style>
+</head>
+<form method="GET" action={% url 'Pokemon:SearchedPokemon' my_data %}>
+    <input type="number" name="type" placeholder="Enter the type of pokemon"/>
+    <input type="submit" value='Save'/>
+</form>
