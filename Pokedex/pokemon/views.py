@@ -1,7 +1,6 @@
 from django.http import HttpResponse, Http404, response
 from django.shortcuts import render
-from django.template import context, loader
-from django.template import RequestContext, Template
+from django.template import context, loader, RequestContext, Template
 import requests
 import json
 
