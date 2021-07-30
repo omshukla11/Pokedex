@@ -1,11 +1,14 @@
-from django.http import HttpResponse, Http404, response
-from django.shortcuts import render
-from django.template import context, loader, RequestContext, Template
+from django.http import HttpResponse, Http404
+from django.shortcuts import redirect, render
+from django.template import RequestContext, Template
 import requests
 import json
 
 from requests.models import Request
 # Create your views here.
+
+def home_view(request):
+    return render(request, 'homepage.html', {})
 
 url = 'https://pokeapi.co/api/v2/'
 s1 = 'type/'
@@ -21,11 +24,12 @@ def types_view(request):
     template = Template('<title> Types of Pokemons </title> <h1>There are 20 types of pokemons namely:</h1> <h2> <ol> {% for t in types %} <li><a href="/types/{{ t }}">{{ t|capfirst }}</a></li> <br> {% endfor %} </ol> </h2>')
     context = RequestContext(request, {'types': types})
     return HttpResponse(template.render(context))
-    # try:
-    #     return render(request, 'types.html', {'types': types})
-    # except types.DoesNotExist:
-    #     raise Http404
 
+def mytype_view(request):
+    try:
+        return render(request, 'types.html', {'types': types})
+    except types.DoesNotExist:
+        raise Http404
 
 def single_type_view(request, s):
     single_type_url = url + s1 + s
@@ -37,16 +41,46 @@ def single_type_view(request, s):
         all_pokemons = []
         for l in pokemon_list:
             all_pokemons.append(l['pokemon']['name'])
+        return render(request, 'singletypes.html', {'type':pokemon_type, 'names':all_pokemons})
+    else:
+        raise Http404
 
-    return render(request, 'singletypes.html', {'type':pokemon_type, 'names':all_pokemons})
 
+    
+def single_pokemon_view(request, p):
+    poke_url = url + 'pokemon/' + str(p)
+    poke_req = requests.get(poke_url)
+    if poke_req.status_code == 200:
+        poke_data = json.loads(poke_req.text)
+        front_pic = poke_data['sprites']['front_default']
+        back_pic = poke_data['sprites']['back_default']
+        weight = poke_data['weight'] 
+        moves = []
+        for m in poke_data["moves"]:
+            moves.append(m["move"]["name"])
+        context = {
+                'name': str(p),
+                'frontpic': front_pic,
+                'backpic': back_pic,
+                'moves': moves,
+                'weight': weight
+        }
+        return render(request, 'singlepoke.html', context)
+    else:
+        raise Http404
+    
 def search_view(request):
     if request.method == "GET":
         my_data = request.GET.get('type')
         my_data = str(my_data)
     return render(request, 'search.html',{})
 
-def search_single_type(request):
-    my_data = request.POST.get('type')
-    context = {'data': my_data}
-    return render(request, 'searchsingletype.html', context)
+def searchedpokemon(request):
+    t = request.POST['search']
+    if t in types:
+        return redirect('/types/'+t)
+    else:
+        try:
+            return redirect('/pokemon/'+t)
+        except:
+            raise Http404
