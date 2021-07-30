@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&family=Rubik:ital@1&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    :root {
+        --font1: 'Anton', sans-serif;
+        --font2: 'Playfair Display', serif;
+        --font3: 'Otomanopee One', sans-serif;
+        --font4: 'Rubik', sans-serif;
+    }
+
+    .navbar {
+        height: 40px;
+        background: black;
+    }
+
+    .navbar ul {
+        list-style-type: none;
+    }
+
+    .navbar ul li {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        float: left;
+        color: crimson;
+        padding: 0px 40px;
+        line-height: 37px;
+        text-transform: uppercase;
+        border-right: 1px solid white;
+        font-size: 15px;
+    }
+
+    .navbar ul li a {
+        text-decoration: none;
+        color: blanchedalmond;
+        display: block;
+        padding: 0px 37px;
+        line-height: 37px;
+    }
+
+    .navbar ul li a:hover {
+        background: darkgoldenrod;
+        color: black;
+    }
+
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .home-text h1 {
+        text-align: center;
+        color: black;
+        font-family: var(--font1);
+        padding: 10px;
+        letter-spacing: 4px;
+    }
+
+    .home-text h2 {
+        margin: 2.5vw;
+        color: black;
+    }
+
+    .home-text h3 {
+        margin: 2.5vw;
+        color: black;
+    }
+
+    .bg-image {
+        background-image: url('https://c4.wallpaperflare.com/wallpaper/436/654/507/pokemon-pikachu-yellow-hd-wallpaper-preview.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center center;
+        height: 100%;
+        width: 100%;
+    }
+
+    .home-text {
+        /* backdrop-filter: blur(3px); */
+    }
+
+    .poke-text h1 {
+        text-align: center;
+        color: black;
+        font-family: var(--font1);
+        padding: 10px;
+        letter-spacing: 4px;
+    }
+
+    .poke-text h2 ol {
+        margin: 2.5vw;
+        color: black;
+    }
+
+    .poke-text h2 ol li a {
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        font-family: var(--font2);
+        font-size: 30px;
+    }
+
+    .poke-text {
+        /* backdrop-filter: blur(3px); */
+    }
+
+    .singletype {
+        /* backdrop-filter: blur(3px); */
+    }
+
+    .singletype h1 {
+        text-align: center;
+        color: black;
+        font-family: var(--font3);
+    }
+
+    .singletype h2 ol {
+        margin: 2.5vw;
+        color: black;
+    }
+
+    .singletype h2 ol li a {
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        font-family: var(--font4);
+    }
+
+
+    .bg-single {
+        background-color: black;
+    }
+
+    .single-text h1, h3 {
+        font-family: var(--font2);
+        color: orange;
+    }
+
+    .single-text ol {
+        margin: 4vw;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-weight: bold;
+        color: orange;
+    }
+
+    .search-bar {
+        /* backdrop-filter: blur(3px); */
+        color: black;
+    }
+
+    input[type=text],
+    select {
+        width: 35%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    label {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    input[type=submit] {
+        width: 10%;
+        background-color: black;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: darkred;
+    }
+</style>
+
+<nav class="navbar">
+    <ul>
+        <li>Welcome To Pokedex!!!</li>
+        <li><a href="/home/">Home</a></li>
+        <li><a href="/types/">Types</a></li>
+        <li><a href="/search/">Search</a></li>
+        <li><a>Caught Pokemons</a></li>
+    </ul>
+</nav>
+
+<body>
+    {% block content %}
+    replace me
+    {% endblock %}
+</body>

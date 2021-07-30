@@ -1,16 +1,24 @@
+{% extends 'navbar.html' %}
 {% load static %}
 <!DOCTYPE html>
 <head>
     <title> Types of Pokemons </title>
-<style>
-h1 {
-    text-align: center;
-    background-color:cyan;
-    color: black;
-}
-</style>
 </head>
-<form method="GET" action={% url 'Pokemon:SearchedPokemon' my_data %}>
-    <input type="number" name="type" placeholder="Enter the type of pokemon"/>
-    <input type="submit" value='Save'/>
-</form>
+{% block content %}
+<div class="bg-image">
+    <div class="search-bar">
+        <br><br><br><br><br>
+        <br><br><br><br>
+        <form method="POST" action={% url 'SearchedPokemon' %}>
+            {% csrf_token %}
+            <label for="fname">Enter the Pokemon or Type of Pokemon</label><br>
+            <br>
+            <input type="text" name="search" placeholder="Your Search" required/>
+            <br>
+            <input type="submit" value='Search' />
+            <br><br><br><br><br>
+            <br><br><br><br><br>
+        </form>
+    </div>
+</div>
+{% endblock %}

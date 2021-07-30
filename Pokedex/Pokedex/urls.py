@@ -16,12 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from django.urls.conf import include
-from pokemon.views import types_view, single_type_view, search_view
+from requests.api import get
+from pokemon.views import home_view, mytype_view, searchedpokemon, single_pokemon_view, types_view, single_type_view, search_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/', home_view, name='HomePage'),
     path('types/', types_view, name='Types of Pokemon'),
+    path('mytypes/', mytype_view, name='Types of Pokemon'),
     path('types/<str:s>/', single_type_view, name='Pokemon'),
-    re_path('search/', search_view, name='Search the type of Pokemon'),
-    re_path(r'search/<str:s>', include('pokemon.urls',namespace='Pokemon'), name='SearchedPokemon')
+    path('pokemon/<str:p>/', single_pokemon_view, name='PokemonInfo'),
+    path('search/', search_view, name='SearchPokemon'),
+    path('searched/', searchedpokemon, name='SearchedPokemon')
 ]

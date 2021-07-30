@@ -1,41 +1,20 @@
 <!DOCTYPE html>
-
+{% extends 'navbar.html' %}
 <head>
     <title> {{ type|capfirst }} Pokemon Information </title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&family=Rubik:ital@1&display=swap');
-
-        :root {
-            --font1: 'Otomanopee One', sans-serif;
-            --font2: 'Rubik', sans-serif;
-        }
-
-        h1 {
-            text-align: center;
-            /* background-color: crimson; */
-            color: black;
-            font-family: var(--font1);
-        }
-
-        h2 ol {
-            margin: 6.5vw
-        }
-
-        h2 ol li {
-            font-family: var(--font2);
-        }
-    </style>
 </head>
-
-<div>
-    <h1> {{ type |capfirst }} type pokemon </h1>
-    <h2>
-        <ol>
-            {% for n in names %}
-            <li>{{ n|capfirst }}</li>
-            <br>
-            {% endfor %}
-        </ol>
-    </h2>
+{% block content %}
+<div class="bg-image">
+    <div class="singletype">
+        <h1> {{ type |capfirst }} type pokemon </h1>
+        <h2>
+            <ol>
+                {% for n in names %}
+                <li><a href="/pokemon/{{ n }}">{{ n|capfirst }}</a></li>
+                <br>
+                {% endfor %}
+            </ol>
+        </h2>
+    </div>
 </div>
+{% endblock %}

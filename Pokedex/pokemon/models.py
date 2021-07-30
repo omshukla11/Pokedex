@@ -2,10 +2,9 @@ from django.db import models
 
 # Create your models here.
 
-class Pokeclass():
-    name         = models.TextField()
+class Poke_class(models.Model):
+    poke_name    = models.TextField()
     poke_type    = models.TextField()
-    sprites      = models.ImageField()
-    height       = models.FloatField()
+    weight       = models.FloatField()
     moves        = models.TextField()
     totabilities = models.IntegerField()
