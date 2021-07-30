@@ -1,3 +1,4 @@
+from pokemon.models import Poke_class
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.template import RequestContext, Template
@@ -65,6 +66,22 @@ def single_pokemon_view(request, p):
                 'moves': moves,
                 'weight': weight
         }
+        totmoves = len(poke_data["moves"])
+        poke_type = ""
+        for t in poke_data['types']:
+            poke_type += t['type']['name']
+            if t!=poke_data['types'][-1]:
+                poke_type += ", "
+
+        caught_poke = {
+                'poke_name': str(p),
+                'poke_type': poke_type,
+                'front_url': front_pic,
+                'back_url': back_pic,
+                'weight': weight,
+                'totmoves': totmoves
+        }
+        Poke_class.objects.create(**caught_poke)
         return render(request, 'singlepoke.html', context)
     else:
         raise Http404

@@ -9,7 +9,7 @@
     <div class="search-bar">
         <br><br><br><br><br>
         <br><br><br><br>
-        <form method="POST" action={% url 'SearchedPokemon' %}>
+        <form method="POST" action={% url 'SearchedPokemon' %} enctype="multipart/form-data">
             {% csrf_token %}
             <label for="fname">Enter the Pokemon or Type of Pokemon</label><br>
             <br>

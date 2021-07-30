@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
-from django.urls.conf import include
-from requests.api import get
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from pokemon.views import home_view, mytype_view, searchedpokemon, single_pokemon_view, types_view, single_type_view, search_view
 
 urlpatterns = [
@@ -29,3 +29,6 @@ urlpatterns = [
     path('search/', search_view, name='SearchPokemon'),
     path('searched/', searchedpokemon, name='SearchedPokemon')
 ]
+
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
