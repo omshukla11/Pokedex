@@ -1,0 +1,24 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<div class="bg-single">
+    <div class="single-text">
+        <h1>Pokemons caught by you: </h1>
+        <h3>
+            <ol>
+                {% for m in poke %}
+                <li> {{ m.poke_name|capfirst }} {{ m.no_poke }}
+                    <br>{{ m.poke_type }}
+                    <br><img src={{ m.front_url }}>
+                    <br><img src={{ m.back_url }}>
+                    <br>Weight: {{ m.weight }}
+                    <br>Total no of moves which {{ m.poke_name|capfirst }} can do are
+                    <a href="pokemon/{{ m.poke_name }}" title="Click to see names of all moves">{{ m.totmoves }}</a>
+                </li>
+                <br><br>
+                {% endfor %}
+            </ol>
+        </h3>
+    </div>
+</div>
+{% endblock %}

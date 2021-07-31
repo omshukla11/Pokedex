@@ -15,9 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
-from pokemon.views import home_view, mytype_view, searchedpokemon, single_pokemon_view, types_view, single_type_view, search_view
+from pokemon.views import caught_view, home_view, mytype_view, searchedpokemon, single_pokemon_view, types_view, single_type_view, search_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,8 +25,6 @@ urlpatterns = [
     path('types/<str:s>/', single_type_view, name='Pokemon'),
     path('pokemon/<str:p>/', single_pokemon_view, name='PokemonInfo'),
     path('search/', search_view, name='SearchPokemon'),
-    path('searched/', searchedpokemon, name='SearchedPokemon')
+    path('searched/', searchedpokemon, name='SearchedPokemon'),
+    path('caught/', caught_view, name='SearchPokemon')
 ]
-
-if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

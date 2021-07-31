@@ -1,7 +1,7 @@
 from pokemon.models import Poke_class
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
-from django.template import RequestContext, Template
+from django.template import RequestContext, Template, context
 import requests
 import json
 
@@ -49,7 +49,8 @@ def single_type_view(request, s):
 
     
 def single_pokemon_view(request, p):
-    poke_url = url + 'pokemon/' + str(p)
+    p = str(p)
+    poke_url = url + 'pokemon/' + p
     poke_req = requests.get(poke_url)
     if poke_req.status_code == 200:
         poke_data = json.loads(poke_req.text)
@@ -60,7 +61,7 @@ def single_pokemon_view(request, p):
         for m in poke_data["moves"]:
             moves.append(m["move"]["name"])
         context = {
-                'name': str(p),
+                'name': p,
                 'frontpic': front_pic,
                 'backpic': back_pic,
                 'moves': moves,
@@ -74,13 +75,16 @@ def single_pokemon_view(request, p):
                 poke_type += ", "
 
         caught_poke = {
-                'poke_name': str(p),
+                'poke_name': p,
                 'poke_type': poke_type,
                 'front_url': front_pic,
                 'back_url': back_pic,
                 'weight': weight,
                 'totmoves': totmoves
         }
+        for i in range(1,(Poke_class.objects.all().count())):
+            if (Poke_class.objects.filter(poke_name=p).exists() and Poke_class.objects.filter(no_poke=i).exists()):
+                caught_poke['no_poke'] = (i+1)
         Poke_class.objects.create(**caught_poke)
         return render(request, 'singlepoke.html', context)
     else:
@@ -101,3 +105,8 @@ def searchedpokemon(request):
             return redirect('/pokemon/'+t)
         except:
             raise Http404
+
+def caught_view(request):
+    poke_set = Poke_class.objects.all()
+    context = {'poke': poke_set}
+    return render(request, 'caught.html', context)
