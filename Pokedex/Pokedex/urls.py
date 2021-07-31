@@ -25,5 +25,5 @@ urlpatterns = [
     path('pokemon/<str:p>/', single_pokemon_view, name='PokemonInfo'),
     path('search/', search_view, name='SearchPokemon'),
     path('searched/', searchedpokemon, name='SearchedPokemon'),
-    path('caught/', caught_view, name='SearchPokemon')
+    path('caught/', caught_view, name='CaughtPokemon')
 ]
