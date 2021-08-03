@@ -76,10 +76,12 @@ def single_pokemon_view(request, p):
                 'weight': weight,
                 'totmoves': totmoves
         }
-        for i in range(1,(Poke_class.objects.all().count())):
-            if (Poke_class.objects.filter(poke_name=p).exists() and Poke_class.objects.filter(no_poke=i).exists()):
-                caught_poke['no_poke'] = (i+1)
-        Poke_class.objects.create(**caught_poke)
+        if (Poke_class.objects.filter(poke_name=p).exists()):
+            obj=Poke_class.objects.get(poke_name=p)
+            obj.no_poke += 1
+            obj.save()
+        else:
+            Poke_class.objects.create(**caught_poke)
         return render(request, 'singlepoke.html', context)
     else:
         raise Http404

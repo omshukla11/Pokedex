@@ -7,8 +7,9 @@
         <h3>
             <ol>
                 {% for m in poke %}
-                <li> {{ m.poke_name|capfirst }} {{ m.no_poke }}
-                    <br>{{ m.poke_type }}
+                <li> {{ m.poke_name|capfirst }} 
+                    {% if m.no_poke > 1 %}<br>No of {{ m.poke_name|capfirst }}s you have: {{ m.no_poke }}{% endif %}
+                    <br>{{ m.poke_type| capfirst }}
                     <br><img src={{ m.front_url }}>
                     <br><img src={{ m.back_url }}>
                     <br>Weight: {{ m.weight }}
