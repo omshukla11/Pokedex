@@ -22,7 +22,7 @@ if types_req.status_code == 200:
         types.append(d['name'])
 
 def types_view(request):
-    template = Template('{% extends "navbar.html" %}<head><title> Types of Pokemons </title></head>{% block content %}<div class="bg-image"><div class="poke-text"><h1>There are 20 types of pokemons namely:</h1><h2><ol>{% for t in types %}<li><a href="/types/{{ t }}">{{ t|capfirst }}</a></li><br>{% endfor %}</ol></h2></div></div>{% endblock %}')
+    template = Template('{% extends "navbar.html" %}<head><title> Types of Pokemons </title></head>{% block content %}<body class="bg-image"><div class="poke-text"><h1>There are 20 types of pokemons namely:</h1><h2><ol>{% for t in types %}<li><a href="/types/{{ t }}">{{ t|capfirst }}</a></li><br>{% endfor %}</ol></h2></div></body>{% endblock %}')
     context = RequestContext(request, {'types': types})
     return HttpResponse(template.render(context))
 
